@@ -1,0 +1,5 @@
+---
+- name: ensure apache is installed (Debian-based)
+  apt:
+    name: "{{ apache_package_name }}"
+    state: present

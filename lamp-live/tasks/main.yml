@@ -5,21 +5,8 @@
 - name: Load a variable file based on the OS type
   include_vars: "{{ ansible_os_family }}.yml"
 
-- name: Install Apache on Debian-based distributions
-  block:
-    - name: ensure apache is installed (Debian-based)
-      apt:
-        name: "{{ apache_package_name }}"
-        state: present
-  when: ansible_os_family == 'Debian'
-
-- name: Install Apache on RedHat-based distributions
-  block:
-    - name: ensure apache is installed (RedHat-based)
-      yum:
-        name: "{{ apache_package_name }}"
-        state: present
-  when: ansible_os_family == 'RedHat'
+- name: Install Apache
+  include_tasks: "apache-{{ ansible_os_family }}.yml"
 
 - name: ensure apache is running and enabled
   service:

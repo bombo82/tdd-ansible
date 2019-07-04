@@ -59,10 +59,10 @@ Cosa ci serve:
   - [x] test content of index.html
   - [x] create expected index.html
   - [x] write template and use variables
-- [ ] refactor task
+- [x] refactor task
   - [x] remove duplication using distribution specific vars
   - [x] use of existing variables instead of hard-coded values
-  - [ ] removal of conditions in favor of _"distribution dependant"_ imports
+  - [x] removal of conditions in favor of _"distribution dependant"_ imports
 
 ## Code Snippets
 ### print distro version - debug msg

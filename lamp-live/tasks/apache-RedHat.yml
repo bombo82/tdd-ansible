@@ -1,0 +1,5 @@
+---
+- name: ensure apache is installed (RedHat-based)
+  yum:
+    name: "{{ apache_package_name }}"
+    state: present
