@@ -49,7 +49,7 @@ Cosa ci serve:
 - [x] add platform (ubuntu)
 - [ ] **Apache2**
   - [x] test_apache_installed
-  - [ ] install apache
+  - [x] install apache
   - [ ] test_apache_service_running_and_enabled
   - [ ] change platforms using _geerlingguy_ versions
   - [ ] start Apache2 and enables it as a service

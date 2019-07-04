@@ -1,3 +1,19 @@
 ---
 - name: print distribution name and version
   debug: msg="{{ ansible_distribution }} {{ ansible_distribution_version }}"
+
+- name: Install Apache on Debian-based distributions
+  block:
+    - name: ensure apache is installed (Debian-based)
+      apt:
+        name: apache2
+        state: present
+  when: ansible_os_family == 'Debian'
+
+- name: Install Apache on RedHat-based distributions
+  block:
+    - name: ensure apache is installed (RedHat-based)
+      yum:
+        name: httpd
+        state: present
+  when: ansible_os_family == 'RedHat'
