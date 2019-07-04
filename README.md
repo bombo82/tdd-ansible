@@ -55,7 +55,7 @@ Cosa ci serve:
   - [x] start Apache2 and enables it as a service
 - [ ] **index.html** with vars
   - [x] test presence of index.html
-  - [ ] create empty template and deploy it
+  - [x] create empty template and deploy it
   - [ ] test content of index.html
   - [ ] create expected index.html
   - [ ] write template and use variables
