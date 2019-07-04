@@ -26,3 +26,9 @@ def test_apache_is_running_and_enabled(host):
 
     assert service.is_running
     assert service.is_enabled
+
+
+def test_index_html_exists(host):
+    index_html = host.file("/var/www/html/index.html")
+
+    assert index_html.exists

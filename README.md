@@ -54,7 +54,7 @@ Cosa ci serve:
   - [x] change platforms using _geerlingguy_ versions
   - [x] start Apache2 and enables it as a service
 - [ ] **index.html** with vars
-  - [ ] test presence of index.html
+  - [x] test presence of index.html
   - [ ] create empty template and deploy it
   - [ ] test content of index.html
   - [ ] create expected index.html
