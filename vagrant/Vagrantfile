@@ -1,0 +1,20 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.box = "centos/7"
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = 1024
+    vb.cpus = 1
+  end
+
+  config.vm.define :molecule, primary: true do |molecule|
+    molecule.vm.network :forwarded_port, host: 2201, guest: 22, id: "ssh", auto_correct: true
+    molecule.vm.network "private_network", ip: "192.168.50.91"
+    molecule.vm.provision "shell", path: "provision-bootstrap.sh"
+    molecule.vm.hostname = "molecule"
+  end
+end
