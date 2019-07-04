@@ -2,17 +2,15 @@
 - name: print distribution name and version
   debug: msg="{{ ansible_distribution }} {{ ansible_distribution_version }}"
 
+- name: Load a variable file based on the OS type
+  include_vars: "{{ ansible_os_family }}.yml"
+
 - name: Install Apache on Debian-based distributions
   block:
     - name: ensure apache is installed (Debian-based)
       apt:
         name: apache2
         state: present
-    - name: ensure apache is running and enabled (Debian-based)
-      service:
-        name: apache2
-        state: started
-        enabled: true
   when: ansible_os_family == 'Debian'
 
 - name: Install Apache on RedHat-based distributions
@@ -21,12 +19,13 @@
       yum:
         name: httpd
         state: present
-    - name: ensure apache is running and enabled (RedHat-based)
-      service:
-        name: httpd
-        state: started
-        enabled: true
   when: ansible_os_family == 'RedHat'
+
+- name: ensure apache is running and enabled
+  service:
+    name: "{{ apache_package_name }}"
+    state: started
+    enabled: true
 
 - name: ensure index.html is present
   template:

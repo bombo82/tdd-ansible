@@ -60,7 +60,7 @@ Cosa ci serve:
   - [x] create expected index.html
   - [x] write template and use variables
 - [ ] refactor task
-  - [ ] remove duplication using distribution specific vars
+  - [x] remove duplication using distribution specific vars
   - [ ] use of existing variables instead of hard-coded values
   - [ ] removal of conditions in favor of _"distribution dependant"_ imports
 
