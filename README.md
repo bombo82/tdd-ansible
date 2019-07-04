@@ -51,7 +51,7 @@ Cosa ci serve:
   - [x] test_apache_installed
   - [x] install apache
   - [x] test_apache_service_running_and_enabled
-  - [ ] change platforms using _geerlingguy_ versions
+  - [x] change platforms using _geerlingguy_ versions
   - [ ] start Apache2 and enables it as a service
 - [ ] **index.html** with vars
   - [ ] test presence of index.html
