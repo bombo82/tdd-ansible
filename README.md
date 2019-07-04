@@ -37,9 +37,9 @@ Cosa ci serve:
 ## Live Code
 - [ ] brevissima introduzione ad Ansible
 - [ ] spiegare lo stack utilizzato (molecule + ansible con docker + testinfra)
-- [ ] creare il role `molecule init role -d docker -r lamp-live`
-- [ ] mostrare rapidamente folder e file di ansible
-- [ ] mostrare molecule boilerplate (molecule.yml and test_default.py)
+- [x] creare il role `molecule init role -d docker -r lamp-live`
+- [x] mostrare rapidamente folder e file di ansible
+- [x] mostrare molecule boilerplate (molecule.yml and test_default.py)
 - [ ] eseguire il test `molecule test`
   - [ ] Test matrix
   - [ ] errore durante l'esecuzione di _lint_
