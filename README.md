@@ -56,8 +56,8 @@ Cosa ci serve:
 - [ ] **index.html** with vars
   - [x] test presence of index.html
   - [x] create empty template and deploy it
-  - [ ] test content of index.html
-  - [ ] create expected index.html
+  - [x] test content of index.html
+  - [x] create expected index.html
   - [ ] write template and use variables
 - [ ] refactor task
   - [ ] remove duplication using distribution specific vars

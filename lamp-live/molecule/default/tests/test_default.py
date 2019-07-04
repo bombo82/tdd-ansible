@@ -32,3 +32,10 @@ def test_index_html_exists(host):
     index_html = host.file("/var/www/html/index.html")
 
     assert index_html.exists
+
+
+def test_index_html_is_equals_to_expected(host):
+    index_html = host.file("/var/www/html/index.html")
+    expected = open("expected/index.html")
+
+    assert index_html.content_string == expected.read()
