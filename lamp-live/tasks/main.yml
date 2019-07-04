@@ -8,6 +8,11 @@
       apt:
         name: apache2
         state: present
+    - name: ensure apache is running and enabled (Debian-based)
+      service:
+        name: apache2
+        state: started
+        enabled: true
   when: ansible_os_family == 'Debian'
 
 - name: Install Apache on RedHat-based distributions
@@ -16,4 +21,9 @@
       yum:
         name: httpd
         state: present
+    - name: ensure apache is running and enabled (RedHat-based)
+      service:
+        name: httpd
+        state: started
+        enabled: true
   when: ansible_os_family == 'RedHat'

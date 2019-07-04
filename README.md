@@ -47,12 +47,12 @@ Cosa ci serve:
 - [ ] `molecule converge && molecule verify` --> esecuzione più rapida e adatta per TDD
 - [x] print distro version - debug msg
 - [x] add platform (ubuntu)
-- [ ] **Apache2**
+- [x] **Apache2**
   - [x] test_apache_installed
   - [x] install apache
   - [x] test_apache_service_running_and_enabled
   - [x] change platforms using _geerlingguy_ versions
-  - [ ] start Apache2 and enables it as a service
+  - [x] start Apache2 and enables it as a service
 - [ ] **index.html** with vars
   - [ ] test presence of index.html
   - [ ] create empty template and deploy it
