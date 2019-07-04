@@ -45,8 +45,8 @@ Cosa ci serve:
   - [x] errore durante l'esecuzione di _lint_
   - [x] fix meta/main.yml
 - [ ] `molecule converge && molecule verify` --> esecuzione più rapida e adatta per TDD
-- [ ] print distro version - debug msg
-- [ ] add platform (ubuntu)
+- [x] print distro version - debug msg
+- [x] add platform (ubuntu)
 - [ ] **Apache2**
   - [ ] test_apache_installed
   - [ ] install apache
