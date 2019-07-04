@@ -48,7 +48,7 @@ Cosa ci serve:
 - [x] print distro version - debug msg
 - [x] add platform (ubuntu)
 - [ ] **Apache2**
-  - [ ] test_apache_installed
+  - [x] test_apache_installed
   - [ ] install apache
   - [ ] test_apache_service_running_and_enabled
   - [ ] change platforms using _geerlingguy_ versions

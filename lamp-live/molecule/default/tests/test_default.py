@@ -6,9 +6,15 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
     os.environ['MOLECULE_INVENTORY_FILE']).get_hosts('all')
 
 
-def test_hosts_file(host):
-    f = host.file('/etc/hosts')
+def _get_apache_package_name(distribution):
+    return {
+        "ubuntu": "apache2",
+        "centos": "httpd"
+    }.get(distribution)
 
-    assert f.exists
-    assert f.user == 'root'
-    assert f.group == 'root'
+
+def test_apache_is_installed(host):
+    package_name = _get_apache_package_name(host.system_info.distribution)
+    package = host.package(package_name)
+
+    assert package.is_installed
