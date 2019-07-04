@@ -1,8 +1,8 @@
 ---
 galaxy_info:
-  author: your name
-  description: your description
-  company: your company (optional)
+  author: Gianni Bombelli
+  description: lamp-live @ Working Software Conference 2019
+  company: freelance
 
   # If the issue tracker for your role is not on github, uncomment the
   # next line and provide a value
@@ -15,7 +15,7 @@ galaxy_info:
   # - GPLv3
   # - Apache
   # - CC-BY
-  license: license (GPLv2, CC-BY, etc)
+  license: GPLv2
 
   min_ansible_version: 1.2
 
@@ -44,6 +44,9 @@ galaxy_info:
   #   - 1.0
   #   - 7
   #   - 99.99
+  platforms:
+    - name: centos
+      versions: 7
 
   galaxy_tags: []
   # List tags for your role here, one per line. A tag is a keyword that describes

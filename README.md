@@ -41,9 +41,9 @@ Cosa ci serve:
 - [x] mostrare rapidamente folder e file di ansible
 - [x] mostrare molecule boilerplate (molecule.yml and test_default.py)
 - [ ] eseguire il test `molecule test`
-  - [ ] Test matrix
-  - [ ] errore durante l'esecuzione di _lint_
-  - [ ] fix meta/main.yml
+  - [x] Test matrix
+  - [x] errore durante l'esecuzione di _lint_
+  - [x] fix meta/main.yml
 - [ ] `molecule converge && molecule verify` --> esecuzione più rapida e adatta per TDD
 - [ ] print distro version - debug msg
 - [ ] add platform (ubuntu)
