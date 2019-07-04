@@ -53,12 +53,12 @@ Cosa ci serve:
   - [x] test_apache_service_running_and_enabled
   - [x] change platforms using _geerlingguy_ versions
   - [x] start Apache2 and enables it as a service
-- [ ] **index.html** with vars
+- [x] **index.html** with vars
   - [x] test presence of index.html
   - [x] create empty template and deploy it
   - [x] test content of index.html
   - [x] create expected index.html
-  - [ ] write template and use variables
+  - [x] write template and use variables
 - [ ] refactor task
   - [ ] remove duplication using distribution specific vars
   - [ ] use of existing variables instead of hard-coded values

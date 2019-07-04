@@ -1,5 +1,7 @@
 ---
 - name: Converge
   hosts: all
+  vars_files:
+    - vars/test.yml
   roles:
     - role: lamp-live
