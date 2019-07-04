@@ -9,7 +9,7 @@
   block:
     - name: ensure apache is installed (Debian-based)
       apt:
-        name: apache2
+        name: "{{ apache_package_name }}"
         state: present
   when: ansible_os_family == 'Debian'
 
@@ -17,7 +17,7 @@
   block:
     - name: ensure apache is installed (RedHat-based)
       yum:
-        name: httpd
+        name: "{{ apache_package_name }}"
         state: present
   when: ansible_os_family == 'RedHat'
 

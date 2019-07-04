@@ -61,7 +61,7 @@ Cosa ci serve:
   - [x] write template and use variables
 - [ ] refactor task
   - [x] remove duplication using distribution specific vars
-  - [ ] use of existing variables instead of hard-coded values
+  - [x] use of existing variables instead of hard-coded values
   - [ ] removal of conditions in favor of _"distribution dependant"_ imports
 
 ## Code Snippets
