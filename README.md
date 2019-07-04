@@ -50,7 +50,7 @@ Cosa ci serve:
 - [ ] **Apache2**
   - [x] test_apache_installed
   - [x] install apache
-  - [ ] test_apache_service_running_and_enabled
+  - [x] test_apache_service_running_and_enabled
   - [ ] change platforms using _geerlingguy_ versions
   - [ ] start Apache2 and enables it as a service
 - [ ] **index.html** with vars

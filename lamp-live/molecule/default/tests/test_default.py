@@ -18,3 +18,11 @@ def test_apache_is_installed(host):
     package = host.package(package_name)
 
     assert package.is_installed
+
+
+def test_apache_is_running_and_enabled(host):
+    package_name = _get_apache_package_name(host.system_info.distribution)
+    service = host.service(package_name)
+
+    assert service.is_running
+    assert service.is_enabled
