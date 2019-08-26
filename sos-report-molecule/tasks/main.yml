@@ -1,2 +1,5 @@
 ---
-# tasks file for sos-report-molecule
+- name: ensure sosreport is installed
+  yum:
+    name: sos
+    state: present
