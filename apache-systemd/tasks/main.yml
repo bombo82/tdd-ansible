@@ -3,3 +3,9 @@
   yum:
     name: httpd
     state: present
+
+- name: ensure apache is running and enabled
+  service:
+    name: httpd
+    state: started
+    enabled: true
