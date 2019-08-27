@@ -23,18 +23,17 @@ nel seguente repsitory: [https://github.com/bombo82/tdd-ansible](https://github.
 ## Obiettivo
 Installare un pacchetto di _SOS Report_ su macchine Ubuntu e CentOS.
 
-SOS Report SOS è uno strumento per acquisire le informazioni di debug per il sistema corrente in formato tarball
-compresso che può essere utilizzato da noi per analizzare un problema oppure inviato al supporto tecnico per ulteriori
-analisi.
+SOS Report è uno strumento per acquisire le informazioni di debug in formato tarball compresso che può essere utilizzato
+per analizzare un problema oppure inviato al supporto tecnico per ulteriori analisi.
 
-Non mi dilungo nel raccontarvi cos'è **TDD** o su come scrivere dei buoni test... per questi argomenti vi rimando ai
+Non mi dilungo nel raccontarvi cosa sia **TDD** o su come scrivere dei buoni test... per questi argomenti vi rimando ai
 seguenti link:
 [Wikipedia-TDD](https://it.wikipedia.org/wiki/Test_driven_development),
 [Agile Book - TDD](https://www.jamesshore.com/Agile-Book/test_driven_development.html),
 [Kent Beck - Programmer Test Principles](https://medium.com/@kentbeck_7670/programmer-test-principles-d01c064d7934)
 
 ## Pre-requisiti
-I pre-requisiti sono veramente minimi, ci basta un computer con installato Docker e Python, senza alcuna esigenza
+I pre-requisiti sono veramente minimi! Ci basta un computer con installato Docker e Python, senza alcuna esigenza
 particolare per il sistema operativo (ovviamente una versione attuale di esso è consigliata).
 
 ## Strumenti
@@ -46,16 +45,17 @@ In questo breve tutorial verranno utilizzati i seguenti strumenti:
 
 [Molecule](https://molecule.readthedocs.io/en/latest/) contiene una serie di strumenti che ci aiutano a sviluppare e
 testare ruoli Ansible. I ruoli Ansible possono essere testati su più sistemi operativi e distribuzioni, provider di
-virtualizzazione come [Docker](https://docs.docker.com/) e vagrant, framework di test come
+virtualizzazione come [Docker](https://docs.docker.com/) e Vagrant, framework di test come
 [testinfra](https://testinfra.readthedocs.io/en/latest/) e Goss possono essere utilizzati tramite Molecule. 
 
 [Testinfra](https://testinfra.readthedocs.io/en/latest/) permette di scrivere unit test in Python per testare lo stato
-attuale dei tuoi server configurati da strumenti di gestione come Ansible, Salt, Puppet, Chef e così via.
+attuale dei server, a prescindere che essi configurati manualmente o da strumenti di gestione come Ansible, Salt,
+Puppet, Chef e così via.
 
 Per prima cosa procediamo con l'installazione degli strumenti che useremo in questo tutorial. Il comando sotto riportato
-usa il _package manager_ di Python per installare tutto quello che ci serve e le relative dipendenze. L'istruzione
-installa delle versioni dei software che corrispondono all'ultima stabile al momento della scrittura di questo tutorial,
-quindi siete liberi di utilizzare tale versioni, oppure rimuoverle e utilizzare l'ultima versione disponibile.
+usa il _package manager_ di Python per installare tutto quello che ci serve con le relative dipendenze. L'istruzione
+installa l'ultima versione stabile disponibile al momento della scrittura di questo tutorial, ma siete liberi di
+utilizzare tali versioni, oppure rimuoverle e utilizzare l'ultima versione disponibile.
 ```bash
 pip install --user ansible==2.8.4 testinfra==3.1.0 molecule==2.22
 ```
@@ -79,11 +79,12 @@ molecule init role --role-name sos-report-molecule
 ```
 
 ### Approccio 1 vs. Approccio 2
-Una cosa che ho imparato e ci è voluto tanto sudore è che nell'informatica se usi 2 procedure differenti per raggiungere
-lo stesso scopo non otterrai mai lo stesso risultato, ma 2 risultati differenti seppur equivalenti.
+Una cosa che ho imparato, e ci è voluto tanto sudore, è che nell'informatica se usi 2 procedure differenti per
+raggiungere lo stesso scopo non otterrai mai lo stesso risultato, ma 2 risultati differenti seppur equivalenti.
 
-Nel primo approccio, usando due comandi differenti (tre con il _cd_) crea uno scheletro più completo e che rispetta
-tutte le **best-practices** di Ansible, mentre con il secondo approccio usiamo un solo comando per fare tutto.
+Nel primo approccio, usando 2 comandi (3 contando il _cd_) viene screato uno scheletro più completo e che rispetta tutte
+le **best-practices** di Ansible, mentre con il secondo approccio lo scheletro non è realmente completo e alcuni file
+non saranno perfettamente coerenti con l'ultimo template Ansible, ma non vi è alcune problema e usiamo solo un comando.
 
 Io sono uno sviluppatore veramente pigro e normalmente uso il secondo approccio e poi mi lamento della mancanza di
 alcune cartelle o alcuni file che sarebbero stati presenti se avessi usato il primo approccio :-(
@@ -92,12 +93,10 @@ alcune cartelle o alcuni file che sarebbero stati presenti se avessi usato il pr
 Dato che useremo **TDD** è necessario configurare e impostare l'ambiente di test e solo in seguito possiamo procedere
 scrivendo del codice.
 
-###  1. Configurazione test framework e molecule
-Innanzitutto, dobbiamo verificare ed eventualmente ridefinire il file di configurazione predefinito di Molecule, che
-viene generato dal comando `molecule init` e che contiene il driver, la piattaforme, i _verifier_ e la sequenza di test
+### 1. Configurazione test framework e molecule
+Innanzitutto, dobbiamo verificare ed eventualmente ridefinire il file di configurazione predefinito di Molecule. Esso
+viene generato dal comando `molecule init` e contiene il driver, le piattaforme, i _verifier_ e la sequenza di test
 (se non vogliamo utilizzare quella predefinita) per il nostro scenario.
-
-file: `<role_name>/molecule/molecule.yml`
 ```yaml
 
 ---
@@ -119,25 +118,28 @@ verifier:
   lint:
     name: flake8
 ```
-Sopra trovate il filecreate di default dal comando `molecule init` ed è quasi perfetto per il nostro scopo...
-noi vorremmo creare il playbook compatibile sia per CentOS sia per Ubuntu, ma applicando lo spirito **TDD** direi che
-possiamo iniziare con CentOS, lasciando inalterato i file, e aggiungere Ubuntu in un secondo momento. 
+Sopra trovate il file `<role_name>/molecule/molecule.yml` creato dal comando `molecule init` ed è quasi perfetto per il
+nostro scopo... noi vorremmo creare il playbook compatibile sia per CentOS sia per Ubuntu, ma applicando lo spirito
+**TDD** direi che possiamo lasciare inalterato il file, iniziando con CentOS e aggiungere Ubuntu in un secondo momento. 
 
 ### 2. Prima esecuzione dei test
-Ora molecule è configurato e il comando `molecule init` ha creato un test per noi... il test è molto semplice ed esso
+Ora molecule è configurato e il comando `molecule init` ha creato un test per noi... il test è molto semplice, esso
 verrà eseguito tramite _PyTest_ e grazie a _TestInfra_ verifica l'esistenza del file `/etc/hosts` (file che in ogni
 distribuzione linux è sempre presente).
 
-I test sono eseguiti tramite il comando `molecule test` che prima di eseguire i test veri e propri, si preoccupa di
+I test sono eseguiti tramite il comando `molecule test` che, prima di eseguire i test veri e propri, si preoccupa di
 scaricare le immagini Docker necessarie, eseguire alcuni linter per verificare la correttezza sintattica e formale del
-codice e in generale _molecule_ eseguirà altri controlli sul nostro playbook Ansible.
+codice e altri controlli sul nostro playbook Ansible e.g idempotenza e side'effects.
 
 Eccoci al momento della verità e come dice una vecchia canzone... **La verità mi fa male, lo sai!**
 A differenza da quello che uno si aspetta l'esecuzione del test fallisce, o meglio a fallire è il _linter_ del playbook
 Ansible. L'errore è abbastanza banale e ci segnala che il file `<role_name>/meta/main.yml` contiene alcuni valori di
 default che andrebbero modificati e l'indicazione delle _platforms_ è mancante. Potete correggere i metadata oppure
-eliminare il file... questo file è indispensabile quando il ruolo viene pubblicato e condiviso su **Ansible Galaxy**
-o un altro repository.
+eliminare il file... questo file è indispensabile solo quando il ruolo viene pubblicato e condiviso su
+**Ansible Galaxy** o un altro repository per i ruoli.
+
+Sistemato il file `<role_name>/meta/main.yml` tutti i test saranno verdi e possiamo procede a scrivere il codice per
+installare il pacchetto **sosreport**.
 
 ### 3. Assicurarsi che il pacchetto sos-report sia installato
 Scriviamo il test che verifica la presenza del pacchetto **sosreport**, quindi editiamo il file
@@ -147,12 +149,12 @@ def test_sos_report_package(host):
     assert host.package('sosreport').is_installed
 ```
 Dopo aver lanciato il test con il comando `molecule test` e verificato che esso fallisce, possiamo procedere scrivendo
-la parte di playbook Ansible con installa il pacchetto **sosreport**. Editate il file `<role_name>/task/main.yml` e
+la parte di playbook Ansible che installa il pacchetto **sosreport**. Editate il file `<role_name>/task/main.yml` e
 inserite il seguente codice:
 ```yaml
 
 ---
-- name: install sosreport
+- name: ensure sosreport is installed
   yum:
     name: sosreport
     state: present
@@ -189,11 +191,11 @@ platforms:
     image: ubuntu:18.04
 ```
 Questa volta il comando `molecule test` fallirà! Il motivo è molto semplice... la parte di automazione che installa il
-pacchetto **sosreport** dipende dalla distribuzione target, per il semplice motivo che il pacchetto ha il nome diverso
+pacchetto **sosreport** dipende dalla distribuzione target, per il semplice motivo che il nome del pacchetto è diverso
 in CentOS e in Ubuntu :-(
 
 A questo punto dobbiamo modificare l'implementazione, prima dei test e poi dell'automazione al fine di gestire la
-differenza tra i nomi. La soluzione che normalmente adotto nei test è creare una mappa `distribuzione -> nome_pacchetto`
+differenza tra i nomi. La soluzione che normalmente adotto nei test è creare una mappa `distribuzione -> nome`
 contenente i valori di nostro interesse.
 ```python
 def _get_sosreport_package_name(distribution):
@@ -209,8 +211,8 @@ def test_sos_report_is_installed(host):
 
     assert package.is_installed
 ```
-Per la parte di Ansible invece ci sono più soluzioni possibili strade. La più semplice prevede di duplicare il blocco di
-codice per l'installazione del pacchetto ed eseguire in modo condizionale il blocco per CentOS o per Ubuntu.
+Per la parte di Ansible invece ci sono più soluzioni possibili. La più semplice prevede di duplicare il blocco di codice
+per l'installazione del pacchetto ed eseguire in modo condizionale il blocco per CentOS o per Ubuntu.
 ```yaml
 
 ---
@@ -228,10 +230,10 @@ codice per l'installazione del pacchetto ed eseguire in modo condizionale il blo
 ```
 
 ### 5. Code Refactor
-Il codice scritto durante questo tutorial è abbastanza semplice e soprattutto sono poche righe. All'interno del playbook
-abbiamo 2 blocchi differenti di codice molto simile tra loro e che verranno eseguiti in modo condizionale in base alla
-distribuzione target. Un possibile refactor è quello di rimuovere i blocchi condizionali in favore di spezzare il
-playbook in più file da includere in base alla distribuzione. Visto la semplicità e brevità del playbook non effettuto
+Il codice scritto durante questo tutorial è abbastanza semplice e soprattutto sono pochissime righe. All'interno del
+playbook abbiamo 2 blocchi differenti di codice molto simile tra loro e che verranno eseguiti in modo condizionale in
+base alla distribuzione target. Un possibile refactor è quello di rimuovere i blocchi condizionali in favore di spezzare
+il playbook in più file da includere in base alla distribuzione. Visto la semplicità e brevità del playbook non faccio
 questo refactor, ma potete vedere un esempio nel playbook **lamp-live** che trovate sempre in questo repository.
 
 [https://github.com/bombo82/tdd-ansible](https://github.com/bombo82/tdd-ansible)  
