@@ -9,3 +9,8 @@
     name: httpd
     state: started
     enabled: true
+
+- name: ensure index.html is present
+  copy:
+    src: index.html
+    dest: "/var/www/html/index.html"
