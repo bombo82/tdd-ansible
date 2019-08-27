@@ -1,2 +1,5 @@
 ---
-# tasks file for apache-systemd
+- name: ensure Apache2 is installed
+  yum:
+    name: httpd
+    state: present
