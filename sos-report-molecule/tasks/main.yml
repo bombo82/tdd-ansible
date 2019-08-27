@@ -1,5 +1,12 @@
 ---
-- name: ensure sosreport is installed
+- name: ensure sosreport is installed (RedHat-based)
   yum:
     name: sos
     state: present
+  when: ansible_os_family == 'RedHat'
+
+- name: ensure sosreport is installed (Debian-based)
+  apt:
+    name: sosreport
+    state: present
+  when: ansible_os_family == 'Debian'
