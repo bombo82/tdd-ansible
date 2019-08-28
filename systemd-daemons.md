@@ -1,10 +1,6 @@
----
-title: TDD Ansible - systemd daemons
-description: TODO
-categories: [blog]
-tags: [infrastructure as code, deploy automation, Ansible, molecule TestInfra, TDD, systemd]
----
-
+TDD Ansible - systemd daemons
+===
+g
 Se sei qui, è perché stai usando Infrastructure-as-Code (IaC), giusto? Hai mai sentito parlare di Test-Driven
 Development_ forse starai pensando: "TDD quella roba da sviluppatori maledetti". Ottimo! Il fatto è che quando fai IaC
 tu stai realmente scrivendo del codice, quindi è molto importante scrivere anche i test e TDD è probabilmente il metodo
