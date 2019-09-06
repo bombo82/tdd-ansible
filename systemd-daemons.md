@@ -33,7 +33,7 @@ seguenti link:
 
 ## Prima di iniziare
 Vi consiglio di leggere e magari seguire il tutorial
-[TDD Ansible - primi passi]({% post_url 2019-08-23-Ansible TDD - primi passi %})
+[TDD Ansible - primi passi](primi-passi.md)
 in cui trovate una descrizione dei pre-requisiti e degli strument strumenti utilizzati, oltre a una breve trattazione
 relativa alla creazione dello scheletro del ruolo e dello scenario di test. 
 
