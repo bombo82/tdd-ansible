@@ -1,20 +1,20 @@
 TDD Ansible - systemd daemons
 ===
-g
+
 Se sei qui, è perché stai usando Infrastructure-as-Code (IaC), giusto? Hai mai sentito parlare di Test-Driven
-Development_ forse starai pensando: "TDD quella roba da sviluppatori maledetti". Ottimo! Il fatto è che quando fai IaC
+Development...forse starai pensando: "TDD quella roba da sviluppatori maledetti". Ottimo! Il fatto è che quando fai IaC
 tu stai realmente scrivendo del codice, quindi è molto importante scrivere anche i test e TDD è probabilmente il metodo
 più efficace per scrivere codice di qualità con una buona copertura di test case! 
 
 ## Introduzione
-[Ansible](http://docs.ansible.com/ansible/latest/index.html) è uno strumento di _agent-less_ orchestrazione IT scritto
+[Ansible](http://docs.ansible.com/ansible/latest/index.html) è uno strumento _agent-less_ di orchestrazione IT scritto
 in Python. Esso semplifica l'automazione e il deploy dell'infrastruttura IT, dei pacchetti software e la loro 
 configurazione.
 
 Le caratteristiche di _Ansible_ sembrano davvero interessanti, ma voglio fare un passo in avanti nel mio viaggio sulla
-via _"DeOps"_ e applicare il concetto di _"Infrastructure as Code"_. Come posso fare? Di certo non basta prendere questi
-file e metterli in un repository condiviso... devo trovare un modo per verificare quello che scrivo, magari usare un
-linter, eseguire dei **"test veri"** della mia automazione e, infine, dato che sto scrivendo codice (usando un DSL),
+via _"DevOps"_ e applicare il concetto di _"Infrastructure as Code"_. Come posso fare? Di certo non basta prendere
+questi file e metterli in un repository condiviso... devo trovare un modo per verificare quello che scrivo, magari usare
+un linter, eseguire dei **"test veri"** della mia automazione e, infine, dato che sto scrivendo codice (usando un DSL),
 perché non applicare **TDD** o BDD? Quali strumenti possono aiutarmi?
 
 Il codice completo scritto durante questo tutorial e altri esempi di playbook Ansible scritti in TDD li potete trovare
@@ -85,7 +85,7 @@ indispensabile solo quando il ruolo viene pubblicato e condiviso su **Ansible Ga
 Sistemato il file `<role_name>/meta/main.yml` tutti i test saranno verdi e possiamo procedere a scrivere il codice.
 
 ### 3. Assicurarsi che il pacchetto apache2 sia installato
-Scriviamo il test che verifica la presenza del pacchetto **apache2**, quindi editiamo il file
+Scriviamo il test che verifica la presenza del pacchetto **apache**, quindi editiamo il file
 `<role_name>/molecule/default/test_default.py`, rimuovendo il test case di default e inseriamo il seguente codice:
 ```python
 def test_apache2_package(host):
@@ -119,7 +119,7 @@ def test_apache_is_running_and_enabled(host):
 Ci aspettiamo che le `assert` presenti nel nostro test non siano verificate (non abbiamo ancora scritto l'automazione),
 ma come potete vedere dai log sotto, è proprio il test che fallisce malamente con un errore :-(
 
-Questo errore è dovuto al fatto che i servizi in CentOS, utilizzano **systemd** come _"System and Service Manager"_, ma
+Questo errore è dovuto al fatto che i servizi in CentOS utilizzano **systemd** come _"System and Service Manager"_, ma
 i container Docker ufficiali di tutte le distribuzioni non hanno al loro interno alcun _"System and Service Manager"_
 configurato e funzionante. La spiegazione della scelta di non inserire un _"System and Service Manager"_ nei container
 Docker esula dal presente tutorial, quindi prendetelo come un dato di fatto e passiamo direttamente a come risolvere
@@ -185,7 +185,7 @@ Personalmente preferisco la seconda opzione e solitamente utilizzo le immagini p
 
 Purtroppo per utilizzare **systemd** non basta cambiare immagine, ma è indispensabile che l'host sia una macchina
 GNU/Linux con **systemd**! Non preoccupatevi... normalmente non c'è niente da fare anche se non utilizzate GNU/Linux
-come host! Distinguiamo i vari casi per sistema operativo che usate per eseguere Docker:
+come host! Distinguiamo i vari casi per sistema operativo che usate:
 - **macOS**: Docker installa di nascosto una VM che usa come host per i container, quindi siete a posto;
 - **MS Windows 10** fa cose magiche e sfrutta il WSL, quindi dovrebbe andare tutto... basta avere fede in Bill Gates;
 - **GNU/Linux** la maggior parte delle distribuzioni usa **systemd**, quindi quasi nessuno ha problemi.
@@ -224,7 +224,7 @@ log della _assert_ fallita. Sotto trovare un esempio:
 ```
 
 #### Infine scriviamo l'automazione
-A questo punto non ci resta che assicurarci che **Apache2** sia avviato e messo in avvio automatico. Aggiungiamo il
+A questo punto non ci resta che assicurarci che **Apache** sia avviato e messo in avvio automatico. Aggiungiamo il
 seguente codice al task del playbook:
 ```yaml
 - name: ensure apache is running and enabled

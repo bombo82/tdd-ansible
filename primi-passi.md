@@ -1,20 +1,20 @@
 TDD Ansible - Primi Passi
 ===
 
-Se sei qui stai usando Infrastructure-as-Code (IaC), giusto? Hai mai sentito parlare di Test-Driven Development...
-forse starai pensando: "TDD quella roba da sviluppatori maledetti". Ottimo! Il fatto è che quando fai IaC tu stai
-realmente scrivendo del codice, quindi è molto importante scrivere anche i test e TDD è probabilmente il metodo più
-efficace per scrivere codice di qualità con un buona copertura di test case! 
+Se sei qui, è perché stai usando Infrastructure-as-Code (IaC), giusto? Hai mai sentito parlare di Test-Driven
+Development...forse starai pensando: "TDD quella roba da sviluppatori maledetti". Ottimo! Il fatto è che quando fai IaC
+tu stai realmente scrivendo del codice, quindi è molto importante scrivere anche i test e TDD è probabilmente il metodo
+più efficace per scrivere codice di qualità con una buona copertura di test case! 
 
 ## Introduzione
-[Ansible](http://docs.ansible.com/ansible/latest/index.html) è uno strumento di orchestrazione IT _agent-less_ scritto
-in Python che semplifica l'automazione e la distribuzione dell'infrastruttura e dei pacchetti software e la loro
+[Ansible](http://docs.ansible.com/ansible/latest/index.html) è uno strumento _agent-less_ di orchestrazione IT scritto
+in Python. Esso semplifica l'automazione e il deploy dell'infrastruttura IT, dei pacchetti software e la loro 
 configurazione.
 
 Le caratteristiche di _Ansible_ sembrano davvero interessanti, ma voglio fare un passo in avanti nel mio viaggio sulla
-via _"DeOps"_ e applicare il concetto di _"Infrastructure as Code"_. Come posso fare? Di certo non basta prendere questi
-file e metterli in un repository condiviso... devo trovare un modo per verificare quello che scrivo, magari usare un
-linter, eseguire dei **"test veri"** della mia automazione e, infine, dato che sto scrivendo codice (usando un DSL),
+via _"DevOps"_ e applicare il concetto di _"Infrastructure as Code"_. Come posso fare? Di certo non basta prendere
+questi file e metterli in un repository condiviso... devo trovare un modo per verificare quello che scrivo, magari usare
+un linter, eseguire dei **"test veri"** della mia automazione e, infine, dato che sto scrivendo codice (usando un DSL),
 perché non applicare **TDD** o BDD? Quali strumenti possono aiutarmi?
 
 Il codice completo scritto durante questo tutorial e altri esempi di playbook Ansible scritti in TDD li potete trovare
