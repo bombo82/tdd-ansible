@@ -1,2 +1,13 @@
 ---
 # tasks file for AVFI19
+- name: ensure sosreport is installed (CentOS)
+  yum:
+    name: sos
+    state: present
+  when: ansible_distribution == 'CentOS'
+
+- name: ensure sosreport is installed (Ubuntu)
+  apt:
+    name: sosreport
+    state: present
+  when: ansible_distribution == 'Ubuntu'
